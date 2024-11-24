@@ -13,17 +13,29 @@ import swagger_DB_ui as SWG
 import mongo_DB_ui as MNG
 import join_conversation
 import event_conversation
+import logging
+
+# Configure logging settings
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 filterwarnings(action="ignore", message=r".*CallbackQueryHandler", category=PTBUserWarning)
 
 
-load_dotenv(dotenv_path=".env")
+if os.path.isfile('.env'):
+    load_dotenv(dotenv_path='.env') # зчитування з файлу .env
 dev_chat_id = str(os.getenv("DEV_CHAT"))
 admin_id = str(os.getenv("ADMIN_ID"))
 telegram_token = str(os.getenv("BOT_TOKEN"))
 swagger_url = str(os.getenv("SWAGGER_URL"))
 swagger_key = str(os.getenv("SWAGGER_KEY"))
 mongo_url = str(os.getenv("MONGO_KEY"))
+logging.info("????????????????????????????????????????????????????????????????????????")
+logging.info(dev_chat_id)
+logging.info(admin_id)
+logging.info(telegram_token)
+logging.info(swagger_url)
+logging.info(swagger_key)
+logging.info(mongo_url)
 
 ordinary_commands=[("start", "Запускає бота"),("help", "Коротка довідка"),("chatid", "Показує ID цього чату"),("join", "Заповнення форми для приєднання"),("addevent", "Додавання нової події")]
 form_commands=[("cancel","Скасувати заповнення форми"),("start", "Запускає бота"),("help", "Коротка довідка"),("chatid", "Показує ID цього чату"),("join", "Заповнення форми для приєднання"),("addevent", "Додавання нової події")]
